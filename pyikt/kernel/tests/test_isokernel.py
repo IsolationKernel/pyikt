@@ -4,9 +4,10 @@ Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.
 """
 
-from sklearn.datasets import load_iris
-from pyikt import IsoKernel
 import pytest
+from sklearn.datasets import load_iris
+
+from pyikt import IsoKernel
 
 method = ["inne", "anne"]
 

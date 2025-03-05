@@ -8,14 +8,8 @@ You should have received a copy of the license along with this
 work. If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 """
 
-import numbers
-from warnings import warn
-
 import numpy as np
 from sklearn.base import BaseEstimator, TransformerMixin
-from sklearn.metrics import euclidean_distances
-from sklearn.utils import check_array
-from sklearn.utils.validation import check_is_fitted, check_random_state
 
 MAX_INT = np.iinfo(np.int32).max
 MIN_FLOAT = np.finfo(float).eps
@@ -65,5 +59,4 @@ class IK_IForest(TransformerMixin, BaseEstimator):
     """
 
     def __init__(self):
-
         pass

@@ -7,6 +7,7 @@ license that can be found in the LICENSE file.
 import numpy as np
 import pytest
 from sklearn.datasets import make_blobs
+
 from pyikt.cluster import PSKC
 
 

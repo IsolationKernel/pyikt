@@ -1,8 +1,7 @@
-import pytest
 import numpy as np
-from pyikt.graph import IsoGraphKernel
-
 import scipy.sparse as sp
+
+from pyikt.graph import IsoGraphKernel
 
 
 def test_isographkernel_initialization():

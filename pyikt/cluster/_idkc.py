@@ -10,11 +10,13 @@ work. If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 
 import numpy as np
 import scipy.sparse as sp
-from sklearn.utils.extmath import safe_sparse_dot
 from sklearn.base import BaseEstimator, ClusterMixin
-from sklearn.utils.validation import check_random_state, check_array
 from sklearn.metrics._pairwise_distances_reduction import ArgKmin
+from sklearn.utils.extmath import safe_sparse_dot
+from sklearn.utils.validation import check_array, check_random_state
+
 from pyikt.kernel import IsoKernel
+
 from ._kcluster import KCluster
 
 

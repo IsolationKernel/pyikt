@@ -1,7 +1,9 @@
+from typing import Any, Literal, Optional, Union
+
 import numpy as np
-from typing import Optional, Union, Literal, Any
 from sklearn.base import BaseEstimator, OutlierMixin
 from sklearn.utils.validation import check_is_fitted
+
 from pyikt.group import IKGAD
 from pyikt.group.utils import check_format
 

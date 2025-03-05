@@ -8,8 +8,8 @@ You should have received a copy of the license along with this
 work. If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 """
 
-from ._isographkernel import IsoGraphKernel
 from ._ikgod import IKGOD
+from ._isographkernel import IsoGraphKernel
 
 __all__ = [
     "IsoGraphKernel",

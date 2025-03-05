@@ -8,17 +8,18 @@ You should have received a copy of the license along with this
 work. If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 """
 
-import numbers
 import copy
+import numbers
 from warnings import warn
+
 import numpy as np
 import scipy.sparse as sp
 from sklearn.base import BaseEstimator
-from sklearn.utils.validation import check_is_fitted
 from sklearn.utils import check_array
 from sklearn.utils.extmath import safe_sparse_dot
-from pyikt.graph.utils import get_degrees, get_neighbors, check_format
+from sklearn.utils.validation import check_is_fitted
 
+from pyikt.graph.utils import check_format, get_degrees, get_neighbors
 from pyikt.kernel import IsoKernel
 
 
@@ -300,12 +301,9 @@ class IKGOD(BaseEstimator):
                 neighbors = get_neighbors(adjacency, i)
                 if degrees[i] > 0:  # Avoid division by zero
                     updated_embedding[i] = (
-                        (
-                            tmp_embedding[neighbors].sum(axis=0) / degrees[i]
-                            + tmp_embedding[i]
-                        )
-                        / 2
-                    )
+                        tmp_embedding[neighbors].sum(axis=0) / degrees[i]
+                        + tmp_embedding[i]
+                    ) / 2
                 else:
                     updated_embedding[i] = tmp_embedding[i]
 

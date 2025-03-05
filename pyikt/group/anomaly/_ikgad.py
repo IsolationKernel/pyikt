@@ -10,10 +10,11 @@ work. If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 
 import numpy as np
 from sklearn.base import BaseEstimator, OutlierMixin
-from sklearn.utils.validation import check_is_fitted
 from sklearn.utils.extmath import safe_sparse_dot
-from pyikt.kernel import IsoKernel
+from sklearn.utils.validation import check_is_fitted
+
 from pyikt.group.utils import check_format
+from pyikt.kernel import IsoKernel
 
 
 class IKGAD(OutlierMixin, BaseEstimator):

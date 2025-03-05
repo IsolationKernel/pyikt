@@ -2,9 +2,10 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-import pytest
 import numpy as np
+import pytest
 from sklearn.utils import check_random_state
+
 from pyikt.stream import ICID
 
 rng = check_random_state(42)

@@ -10,12 +10,13 @@ work. If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 
 import numbers
 from warnings import warn
+
 import numpy as np
 from sklearn.base import BaseEstimator, OutlierMixin
 from sklearn.metrics import euclidean_distances
-from sklearn.utils.validation import check_is_fitted, check_random_state
-from sklearn.utils import check_array
 from sklearn.metrics._pairwise_distances_reduction import ArgKmin
+from sklearn.utils import check_array
+from sklearn.utils.validation import check_is_fitted, check_random_state
 
 MAX_INT = np.iinfo(np.int32).max
 MIN_FLOAT = np.finfo(float).eps
@@ -161,7 +162,6 @@ class INNE(OutlierMixin, BaseEstimator):
         return self
 
     def _fit(self, X):
-
         n_samples, n_features = X.shape
         self._centroids = np.empty([self.n_estimators, self.max_samples_, n_features])
         self._ratio = np.empty([self.n_estimators, self.max_samples_])

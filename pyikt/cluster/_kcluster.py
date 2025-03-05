@@ -9,8 +9,9 @@ work. If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 """
 
 from collections.abc import Iterable
-from scipy import sparse as sp
+
 import numpy as np
+from scipy import sparse as sp
 
 
 class KCluster(object):

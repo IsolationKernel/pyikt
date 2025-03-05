@@ -9,10 +9,12 @@ work. If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 """
 
 import warnings
+from typing import Optional, Union
+
 import numpy as np
-from typing import Union, Optional
 from sklearn.base import BaseEstimator, OutlierMixin
-from sklearn.utils.validation import check_is_fitted, check_array
+from sklearn.utils.validation import check_array, check_is_fitted
+
 from pyikt.group import IKGAD
 
 
@@ -147,7 +149,6 @@ class IKTOD(OutlierMixin, BaseEstimator):
         # Check if time series length is compatible with period_length
         rest_samples = X.shape[0] % self.period_length
         if rest_samples != 0:
-
             warnings.warn(
                 f"The last sequence of series has {rest_samples} samples, "
                 f"which are less than other sequence."

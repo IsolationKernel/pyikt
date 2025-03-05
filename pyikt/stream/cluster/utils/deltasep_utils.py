@@ -13,7 +13,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-
 """
 Utilities for creating delta separated data sets.
 """
@@ -48,7 +47,6 @@ def gen_k_centers(k, dim):
         else:
             centers.append(c)
     return centers, delta
-
 
 
 def create_dataset(dims, size, num_clusters=20):
@@ -111,187 +109,223 @@ def gen_4_normal():
     Returns:
         A list of the four cluster centers.
     """
-    return [np.random.multivariate_normal(mean=np.array([1.0, 1.0]),
-               cov=np.array([[1.0, 0.0], [0.0, 1.0]])),
-            np.random.multivariate_normal(mean=np.array([1.0, -1.0]),
-               cov=np.array([[1.0, 0.0], [0.0, 1.0]])),
-            np.random.multivariate_normal(mean=np.array([-1.0, -1.0]),
-               cov=np.array([[1.0, 0.0], [0.0, 1.0]])),
-            np.random.multivariate_normal(mean=np.array([-1.0, 1.0]),
-               cov=np.array([[1.0, 0.0], [0.0, 1.0]]))]
+    return [
+        np.random.multivariate_normal(
+            mean=np.array([1.0, 1.0]), cov=np.array([[1.0, 0.0], [0.0, 1.0]])
+        ),
+        np.random.multivariate_normal(
+            mean=np.array([1.0, -1.0]), cov=np.array([[1.0, 0.0], [0.0, 1.0]])
+        ),
+        np.random.multivariate_normal(
+            mean=np.array([-1.0, -1.0]), cov=np.array([[1.0, 0.0], [0.0, 1.0]])
+        ),
+        np.random.multivariate_normal(
+            mean=np.array([-1.0, 1.0]), cov=np.array([[1.0, 0.0], [0.0, 1.0]])
+        ),
+    ]
 
 
 def _4_normal_spread():
-  """Create 4 cluster centers.
+    """Create 4 cluster centers.
 
-  Create gaussians centered at (10,10), (10,-10), (-10,-10) and (-10,10).
-  Each has standard covariance.
+    Create gaussians centered at (10,10), (10,-10), (-10,-10) and (-10,10).
+    Each has standard covariance.
 
-  Args:
-    None
+    Args:
+      None
 
-  Returns:
-    A list of the four cluster centers.
-  """
-  return [np.random.multivariate_normal(mean=np.array([10.0, 10.0]),
-             cov=np.array([[1.0, 0.0], [0.0, 1.0]])),
-          np.random.multivariate_normal(mean=np.array([10.0, -10.0]),
-             cov=np.array([[1.0, 0.0], [0.0, 1.0]])),
-          np.random.multivariate_normal(mean=np.array([-10.0, -10.0]),
-             cov=np.array([[1.0, 0.0], [0.0, 1.0]])),
-          np.random.multivariate_normal(mean=np.array([-10.0, 10.0]),
-             cov=np.array([[1.0, 0.0], [0.0, 1.0]]))]
+    Returns:
+      A list of the four cluster centers.
+    """
+    return [
+        np.random.multivariate_normal(
+            mean=np.array([10.0, 10.0]), cov=np.array([[1.0, 0.0], [0.0, 1.0]])
+        ),
+        np.random.multivariate_normal(
+            mean=np.array([10.0, -10.0]), cov=np.array([[1.0, 0.0], [0.0, 1.0]])
+        ),
+        np.random.multivariate_normal(
+            mean=np.array([-10.0, -10.0]), cov=np.array([[1.0, 0.0], [0.0, 1.0]])
+        ),
+        np.random.multivariate_normal(
+            mean=np.array([-10.0, 10.0]), cov=np.array([[1.0, 0.0], [0.0, 1.0]])
+        ),
+    ]
 
 
 def _5x5_grid_clusters():
-  """Create a 5x5 grid of cluster centers.
+    """Create a 5x5 grid of cluster centers.
 
-  Create 25 cluster centers on the grid I^{[0, 4] x [0,4]}.  Each center is a
-  gaussian with standard covariance
+    Create 25 cluster centers on the grid I^{[0, 4] x [0,4]}.  Each center is a
+    gaussian with standard covariance
 
-  Args:
-    None
+    Args:
+      None
 
-  Returns:
-    A list of cluster centers.
-  """
-  return [np.random.multivariate_normal(mean=np.array([i, j]), cov=np.array([[1.0, 0.0],
-                                                  [0.0, 1.0]]))
-          for i in range(5)
-          for j in range(5)]
+    Returns:
+      A list of cluster centers.
+    """
+    return [
+        np.random.multivariate_normal(
+            mean=np.array([i, j]), cov=np.array([[1.0, 0.0], [0.0, 1.0]])
+        )
+        for i in range(5)
+        for j in range(5)
+    ]
 
 
 def _5x5_grid_clusters_spread():
-  """Create a 5x5 grid of cluster centers.
+    """Create a 5x5 grid of cluster centers.
 
-  Create 25 cluster centers on the grid I^{[0, 4] x [0,4]}.  Each center is a
-  gaussian with standard covariance
+    Create 25 cluster centers on the grid I^{[0, 4] x [0,4]}.  Each center is a
+    gaussian with standard covariance
 
-  Args:
-    None
+    Args:
+      None
 
-  Returns:
-    A list of cluster centers.
-  """
-  return [np.random.multivariate_normal(mean=np.array([i * 25, j * 25]), cov=np.array([[1.0, 0.0],
-                                                            [0.0, 1.0]]))
-          for i in range(5)
-          for j in range(5)]
+    Returns:
+      A list of cluster centers.
+    """
+    return [
+        np.random.multivariate_normal(
+            mean=np.array([i * 25, j * 25]), cov=np.array([[1.0, 0.0], [0.0, 1.0]])
+        )
+        for i in range(5)
+        for j in range(5)
+    ]
 
 
 def _5x5_grid_clusters_close():
-  """Create a 5x5 grid of cluster centers.
+    """Create a 5x5 grid of cluster centers.
 
-  Create 25 cluster centers on the grid I^{[0, 4] x [0,4]}.  Each center is a
-  gaussian with standard covariance
+    Create 25 cluster centers on the grid I^{[0, 4] x [0,4]}.  Each center is a
+    gaussian with standard covariance
 
-  Args:
-    None
+    Args:
+      None
 
-  Returns:
-    A list of cluster centers.
-  """
-  return [np.random.multivariate_normal(mean=np.array([i * 5, j * 5]), cov=np.array([[1.0, 0.0],
-                                                          [0.0, 1.0]]))
-          for i in range(5)
-          for j in range(5)]
+    Returns:
+      A list of cluster centers.
+    """
+    return [
+        np.random.multivariate_normal(
+            mean=np.array([i * 5, j * 5]), cov=np.array([[1.0, 0.0], [0.0, 1.0]])
+        )
+        for i in range(5)
+        for j in range(5)
+    ]
 
 
 def _2x3_grid_clusters_close():
-  """Create a 3x3 grid of cluster centers.
+    """Create a 3x3 grid of cluster centers.
 
-  Create 25 cluster centers on the grid I^{[0, 4] x [0,4]}.  Each center is a
-  gaussian with standard covariance
+    Create 25 cluster centers on the grid I^{[0, 4] x [0,4]}.  Each center is a
+    gaussian with standard covariance
 
-  Args:
-    None
+    Args:
+      None
 
-  Returns:
-    A list of cluster centers.
-  """
-  return [np.random.multivariate_normal(mean=np.array([i * 5, j * 5]), cov=np.array([[1.0, 0.0],
-                                                          [0.0, 1.0]]))
-          for i in range(2)
-          for j in range(3)]
+    Returns:
+      A list of cluster centers.
+    """
+    return [
+        np.random.multivariate_normal(
+            mean=np.array([i * 5, j * 5]), cov=np.array([[1.0, 0.0], [0.0, 1.0]])
+        )
+        for i in range(2)
+        for j in range(3)
+    ]
 
 
 def _2x3_grid_clusters_spread():
-  """Create a 3x3 grid of cluster centers.
+    """Create a 3x3 grid of cluster centers.
 
-  Create 25 cluster centers on the grid I^{[0, 4] x [0,4]}.  Each center is a
-  gaussian with standard covariance
+    Create 25 cluster centers on the grid I^{[0, 4] x [0,4]}.  Each center is a
+    gaussian with standard covariance
 
-  Args:
-    None
+    Args:
+      None
 
-  Returns:
-    A list of cluster centers.
-  """
-  return [np.random.multivariate_normal(mean=np.array([i * 25, j * 25]), cov=np.array([[1.0, 0.0],
-                                                            [0.0, 1.0]]))
-          for i in range(2)
-          for j in range(3)]
+    Returns:
+      A list of cluster centers.
+    """
+    return [
+        np.random.multivariate_normal(
+            mean=np.array([i * 25, j * 25]), cov=np.array([[1.0, 0.0], [0.0, 1.0]])
+        )
+        for i in range(2)
+        for j in range(3)
+    ]
 
 
 def _10x10_grid_clusters_close():
-  """Create a 3x3 grid of cluster centers.
+    """Create a 3x3 grid of cluster centers.
 
-  Create 25 cluster centers on the grid I^{[0, 4] x [0,4]}.  Each center is a
-  gaussian with standard covariance
+    Create 25 cluster centers on the grid I^{[0, 4] x [0,4]}.  Each center is a
+    gaussian with standard covariance
 
-  Args:
-    None
+    Args:
+      None
 
-  Returns:
-    A list of cluster centers.
-  """
-  return [np.random.multivariate_normal(mean=np.array([i * 5, j * 5]), cov=np.array([[1.0, 0.0],
-                                                          [0.0, 1.0]]))
-          for i in range(10)
-          for j in range(10)]
+    Returns:
+      A list of cluster centers.
+    """
+    return [
+        np.random.multivariate_normal(
+            mean=np.array([i * 5, j * 5]), cov=np.array([[1.0, 0.0], [0.0, 1.0]])
+        )
+        for i in range(10)
+        for j in range(10)
+    ]
 
 
 def _10x10_grid_clusters_spread():
-  """Create a 3x3 grid of cluster centers.
+    """Create a 3x3 grid of cluster centers.
 
-  Create 25 cluster centers on the grid I^{[0, 4] x [0,4]}.  Each center is a
-  gaussian with standard covariance
+    Create 25 cluster centers on the grid I^{[0, 4] x [0,4]}.  Each center is a
+    gaussian with standard covariance
 
-  Args:
-    None
+    Args:
+      None
 
-  Returns:
-    A list of cluster centers.
-  """
-  return [np.random.multivariate_normal(mean=np.array([i * 25, j * 25]), cov=np.array([[1.0, 0.0],
-                                                            [0.0, 1.0]]))
-          for i in range(10)
-          for j in range(10)]
+    Returns:
+      A list of cluster centers.
+    """
+    return [
+        np.random.multivariate_normal(
+            mean=np.array([i * 25, j * 25]), cov=np.array([[1.0, 0.0], [0.0, 1.0]])
+        )
+        for i in range(10)
+        for j in range(10)
+    ]
 
 
 def _random_standard_centers(n=100):
-  """Create random cluster centers.
+    """Create random cluster centers.
 
-  Create n cluster centers randomly.  Each cluster center is a draw from a
-  gaussian distribution centered at (0,0) with standard covariance.
+    Create n cluster centers randomly.  Each cluster center is a draw from a
+    gaussian distribution centered at (0,0) with standard covariance.
 
-  Args:
-    n - optional; the number of centers to draw (default 100).
+    Args:
+      n - optional; the number of centers to draw (default 100).
 
-  Returns:
-    A list of cluster centers.
-  """
-  generator = np.random.multivariate_normal(mean=np.array([0, 0]),
-                 cov=np.array([[1.0, 0.0], [0.0, 1.0]]))
-  return [np.random.multivariate_normal(mean=pt, cov=np.array([[1.0, 0.0], [0.0, 1.0]]))
-          for pt in generator.rvs(size=n)]
+    Returns:
+      A list of cluster centers.
+    """
+    generator = np.random.multivariate_normal(
+        mean=np.array([0, 0]), cov=np.array([[1.0, 0.0], [0.0, 1.0]])
+    )
+    return [
+        np.random.multivariate_normal(mean=pt, cov=np.array([[1.0, 0.0], [0.0, 1.0]]))
+        for pt in generator.rvs(size=n)
+    ]
 
 
 def _from_file(filename):
-  with open(filename, 'r') as f:
-    clustering = []
-    for line in f:
-      splits = line.split('\t')
-      l, vec = int(splits[0]), np.array([float(x) for x in splits[1:]])
-      clustering.append((vec, l))
-  return clustering
+    with open(filename, "r") as f:
+        clustering = []
+        for line in f:
+            splits = line.split("\t")
+            l, vec = int(splits[0]), np.array([float(x) for x in splits[1:]])
+            clustering.append((vec, l))
+    return clustering

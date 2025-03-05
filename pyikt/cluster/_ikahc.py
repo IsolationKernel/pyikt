@@ -8,13 +8,13 @@ You should have received a copy of the license along with this
 work. If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 """
 
-from typing import Optional, Union, Literal, Any
+from typing import Any, Literal, Optional, Union
 
 import numpy as np
-from scipy.cluster.hierarchy import linkage, fcluster
+from scipy.cluster.hierarchy import fcluster, linkage
 from sklearn.base import BaseEstimator, ClusterMixin
-from sklearn.utils.validation import check_is_fitted
 from sklearn.utils import check_array
+from sklearn.utils.validation import check_is_fitted
 
 from pyikt.kernel import IsoKernel
 
@@ -232,7 +232,6 @@ class IKAHC(BaseEstimator, ClusterMixin):
             return fcluster(self.dendrogram_, t=t, criterion=criterion)
         else:
             return fcluster(self.dendrogram_, t=n_clusters, criterion="maxclust")
-
 
     def fit_transform(self, X: np.ndarray, y: Any = None) -> np.ndarray:
         """Fit algorithm to data and return the dendrogram.

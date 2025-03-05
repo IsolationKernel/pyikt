@@ -10,9 +10,9 @@ work. If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 
 import numpy as np
 from sklearn.base import BaseEstimator, OutlierMixin
-from sklearn.utils.validation import check_is_fitted
-from sklearn.utils import check_array
 from sklearn.ensemble import IsolationForest
+from sklearn.utils import check_array
+from sklearn.utils.validation import check_is_fitted
 
 MAX_INT = np.iinfo(np.int32).max
 MIN_FLOAT = np.finfo(float).eps
@@ -112,7 +112,7 @@ class IForest(OutlierMixin, BaseEstimator):
         random_state=None,
         verbose=0,
     ):
-        self.contamination=contamination
+        self.contamination = contamination
         self.n_estimators = n_estimators
         self.max_samples = max_samples
         self.max_features = max_features

@@ -8,9 +8,9 @@ You should have received a copy of the license along with this
 work. If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 """
 
+import numpy as np
 import scipy
 from scipy import sparse
-import numpy as np
 
 
 def delete_row_csr(mat, i):

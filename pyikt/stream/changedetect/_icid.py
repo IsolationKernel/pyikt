@@ -9,21 +9,22 @@ work. If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 """
 
 import numpy as np
-from sklearn.base import BaseEstimator
-from sklearn.utils.validation import check_is_fitted
-from sklearn.utils import check_array
-from pyikt.kernel import IsoDisKernel
 from scipy.stats import entropy
+from sklearn.base import BaseEstimator
+from sklearn.utils import check_array
+from sklearn.utils.validation import check_is_fitted
+
+from pyikt.kernel import IsoDisKernel
 
 
 class ICID(BaseEstimator):
     """Isolate Change Interval Detection for monitoring data stream distribution changes.
 
-    ICID (Isolate Change Interval Detection) is designed to detect intervals in a data stream
-    where significant distribution changes occur. It leverages isolation-based methods to
-    measure similarity between consecutive data windows, identifying points where the
-    underlying distribution shifts. The algorithm adaptively selects the best sampling
-    parameters for isolation kernels based on stability metrics.
+    ICID (Isolate Change Interval Detection) is designed to detect intervals in a data
+    stream where significant distribution changes occur. It leverages isolation-based
+    methods to measure similarity between consecutive data windows, identifying points
+    where the underlying distribution shifts. The algorithm adaptively selects the best
+    sampling parameters for isolation kernels based on stability metrics.
 
     Parameters
     ----------
@@ -93,7 +94,7 @@ class ICID(BaseEstimator):
     >>> X_anomaly = np.random.randn(10, 2) * 5 + 10  # Different distribution
     >>> X_normal2 = np.random.randn(20, 2)
     >>> X = np.vstack([X_normal1, X_anomaly, X_normal2])
-    >>> icid = ICID( n_estimators=50, max_samples_list=[4, 8], window_size=10, random_state=42)
+    >>> icid = ICID(n_estimators=50, max_samples_list=[4, 8], window_size=10, random_state=42)
     >>> # Batch predictions
     >>> icid.fit_predict_batch(X)
     array([ 1,  1,  1,  1,  -1,  -1,  1])
@@ -177,9 +178,9 @@ class ICID(BaseEstimator):
         self.fit(X)
         is_inlier = np.ones(len(self.interval_score_), dtype=int)
         threshold = self._determine_anomaly_bounds()
-        is_inlier[self.interval_score_ > threshold] = (
-            -1
-        )  # Higher scores indicate change
+        is_inlier[
+            self.interval_score_ > threshold
+        ] = -1  # Higher scores indicate change
         return is_inlier
 
     def predict_online(self, X):

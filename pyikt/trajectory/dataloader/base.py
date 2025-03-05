@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import abc
 import inspect
-import itertools
 import os
 import pathlib
 import re

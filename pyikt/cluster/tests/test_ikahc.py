@@ -9,6 +9,7 @@ work. If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 
 import numpy as np
 import pytest
+
 from pyikt.cluster import IKAHC
 
 

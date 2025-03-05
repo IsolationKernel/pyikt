@@ -10,13 +10,15 @@ work. If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 
 from __future__ import annotations
 
-from sklearn.base import BaseEstimator, ClusterMixin
-from sklearn.utils.validation import check_is_fitted, check_X_y, check_array
-from typing import Optional, Union, Any, Literal
+from typing import Literal, Optional, Union
+
 import numpy as np
+from sklearn.base import BaseEstimator, ClusterMixin
+from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
+
+from pyikt.kernel import IsoKernel
 
 from ._inode import INODE
-from pyikt.kernel import IsoKernel
 from .utils.dendrogram_purity import dendrogram_purity
 from .utils.Graphviz import Graphviz
 from .utils.serialize_trees import serliaze_tree_to_file

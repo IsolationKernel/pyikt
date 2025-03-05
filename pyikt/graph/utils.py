@@ -8,9 +8,10 @@ You should have received a copy of the license along with this
 work. If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 """
 
+from typing import Union
+
 import numpy as np
 import scipy.sparse as sp
-from typing import Union
 
 
 def get_degrees(input_matrix: sp.csr_matrix, transpose: bool = False) -> np.ndarray:

@@ -8,12 +8,14 @@ You should have received a copy of the license along with this
 work. If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 """
 
+from typing import Any, Literal, Optional, Union
+
 import numpy as np
 from sklearn.base import BaseEstimator, ClusterMixin
-from pyikt.kernel import IsoKernel
+
 from pyikt.cluster import IDKC
 from pyikt.group.utils import check_format
-from typing import Optional, Union, Literal, Any
+from pyikt.kernel import IsoKernel
 
 
 class TIDKC(BaseEstimator, ClusterMixin):

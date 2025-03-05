@@ -88,14 +88,14 @@ pyikt = { path = ".", editable = true }
 
 [tool.pixi.feature.lint.dependencies]
 # The version below should be aligned with the one of `.pre-commit-config.yaml`
-black = "23.3.0"
+black = "24.8.0"
 pre-commit = "3.7.1"
-ruff = "0.4.2"
+ruff = "0.9.9"
 
 [tool.pixi.feature.lint.tasks]
 black = { cmd = "black --check --diff pyikt && black --check --diff examples" }
 ruff = { cmd = "ruff check --output-format=full pyikt && ruff check --output-format=full examples" }
-lint = { depends_on = ["black", "ruff"] }
+lint = { depends-on = ["black", "ruff"] }
 
 [tool.pixi.feature.test.dependencies]
 pytest = "*"
@@ -113,7 +113,7 @@ mkdocstrings = "0.26.1"
 mkdocstrings-python = "1.11.1"
 notebook = "6.4.12"
 jupyter_contrib_nbextensions = "0.7.0"
-black = "23.3.0"
+black = "24.8.0"
 
 [tool.pixi.feature.doc.tasks]
 clean-doc = { cmd = "rm -rf site" }

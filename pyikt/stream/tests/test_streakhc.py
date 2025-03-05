@@ -1,8 +1,7 @@
-import pytest
 import numpy as np
+import pytest
+
 from pyikt.stream import STREAMKHC
-import tempfile
-import os
 
 
 def test_streamkhc_init():

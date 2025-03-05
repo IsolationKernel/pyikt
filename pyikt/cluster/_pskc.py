@@ -9,12 +9,13 @@ work. If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 """
 
 import numpy as np
-from pyikt.kernel import IsoKernel
-from sklearn.utils.extmath import safe_sparse_dot
 from sklearn.base import BaseEstimator, ClusterMixin
-from sklearn.utils.validation import check_is_fitted
 from sklearn.utils import check_array
+from sklearn.utils.extmath import safe_sparse_dot
+from sklearn.utils.validation import check_is_fitted
+
 from pyikt.cluster._kcluster import KCluster
+from pyikt.kernel import IsoKernel
 
 
 class PSKC(BaseEstimator, ClusterMixin):
@@ -191,7 +192,6 @@ class PSKC(BaseEstimator, ClusterMixin):
         c_k.add_points(point_indices[x_id], X[point_indices][x_id])
         point_indices = np.delete(point_indices, x_id)
         return c_k, point_indices
-
 
     def _get_labels(self, X):
         """Get cluster labels for all points in the dataset."""

@@ -9,9 +9,10 @@ work. If not, see <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
 """
 
 import numpy as np
-from sklearn.datasets import make_blobs
-from pyikt.cluster import IDKC
 from sklearn import metrics
+from sklearn.datasets import make_blobs
+
+from pyikt.cluster import IDKC
 
 
 def test_IDKC():

@@ -1,6 +1,8 @@
-from .base import FileDataset
-import pandas as pd
 import datetime
+
+import pandas as pd
+
+from .base import FileDataset
 
 
 class SheepDogs(FileDataset):

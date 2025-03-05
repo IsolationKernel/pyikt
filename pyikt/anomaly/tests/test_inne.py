@@ -6,11 +6,11 @@ import time
 
 import numpy as np
 import pytest
-from pyikt.anomaly import INNE
 from sklearn.datasets import (
     load_diabetes,
     load_iris,
 )
+from sklearn.ensemble import IsolationForest
 from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import ParameterGrid
 from sklearn.utils import check_random_state
@@ -19,7 +19,7 @@ from sklearn.utils._testing import (
     ignore_warnings,
 )
 
-from sklearn.ensemble import IsolationForest
+from pyikt.anomaly import INNE
 
 rng = check_random_state(0)
 

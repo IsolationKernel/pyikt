@@ -11,22 +11,28 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-import time
-from functools import partial
-from itertools import combinations, groupby
-from multiprocessing import Pool, Manager
-
+import sys
 import threading
-from queue import Queue
+from itertools import combinations, groupby
+from multiprocessing import Pool
 
 import numpy as np
-import sys
+
 sys.setrecursionlimit(50000)
 queueLock = threading.Lock()
 
 
 class Producer(threading.Thread):
-    def __init__(self, samp_queue, cluser_to_leaves, leaf_to_cluster, result_queue, non_singleton_leaves, *args, **kwargs):
+    def __init__(
+        self,
+        samp_queue,
+        cluser_to_leaves,
+        leaf_to_cluster,
+        result_queue,
+        non_singleton_leaves,
+        *args,
+        **kwargs,
+    ):
         super(Producer, self).__init__(*args, **kwargs)
         self.samp_queue = samp_queue
         self.result_queue = result_queue
@@ -38,10 +44,10 @@ class Producer(threading.Thread):
         while True:
             queueLock.acquire()
             if self.samp_queue.empty():
-                print('bye')
+                print("bye")
                 queueLock.release()
                 break
-            print('剩余采样数：', self.samp_queue.qsize())
+            print("剩余采样数：", self.samp_queue.qsize())
             samp = self.samp_queue.get()
             queueLock.release()
             self.get_purity()
@@ -52,9 +58,8 @@ class Producer(threading.Thread):
         rand_cluster_member = np.random.choice(self.cluster_to_leaves[cluster])
         # Make sure we get two distinct leaves
         while rand_cluster_member == rand_leaf:
-            #assert(leaf_to_cluster[rand_leaf] == leaf_to_cluster[rand_cluster_member])
-            rand_cluster_member = np.random.choice(
-                self.cluster_to_leaves[cluster])
+            # assert(leaf_to_cluster[rand_leaf] == leaf_to_cluster[rand_cluster_member])
+            rand_cluster_member = np.random.choice(self.cluster_to_leaves[cluster])
         lca = rand_leaf.lca(rand_cluster_member)
         purity = lca.purity(cluster=cluster)
         # print(purity)
@@ -86,12 +91,15 @@ def expected_dendrogram_purity(root):
     def get_cluster(x):
         return x.pts[0][0]
 
-    cluster_to_leaves = {c: list(ls)
-                         for c, ls in groupby(sorted(leaves, key=get_cluster),
-                                              get_cluster)}
+    cluster_to_leaves = {
+        c: list(ls) for c, ls in groupby(sorted(leaves, key=get_cluster), get_cluster)
+    }
     leaf_to_cluster = {l: l.pts[0][0] for l in leaves}
-    non_singleton_leaves = [l for l in leaf_to_cluster.keys()
-                            if len(cluster_to_leaves[leaf_to_cluster[l]]) > 1]
+    non_singleton_leaves = [
+        l
+        for l in leaf_to_cluster.keys()
+        if len(cluster_to_leaves[leaf_to_cluster[l]]) > 1
+    ]
     if len(non_singleton_leaves) == 0.0:
         return 1.0
 
@@ -100,12 +108,13 @@ def expected_dendrogram_purity(root):
     samps = len(non_singleton_leaves) * 5  # TODO (AK): pick 5 in a better way.
     with Pool(processes=6) as pool:
         res = pool.starmap(
-            process, [(non_singleton_leaves, leaf_to_cluster, cluster_to_leaves)]*samps)
+            process,
+            [(non_singleton_leaves, leaf_to_cluster, cluster_to_leaves)] * samps,
+        )
     return sum(res) / samps
 
 
 def process(non_singleton_leaves, leaf_to_cluster, cluster_to_leaves):
-
     rand_leaf = np.random.choice(non_singleton_leaves)
     cluster = leaf_to_cluster[rand_leaf]
     rand_cluster_member = np.random.choice(cluster_to_leaves[cluster])
@@ -127,8 +136,9 @@ def dendrogram_purity(root):
         return x.pts[0][0]
 
     sorted_lvs = sorted(leaves, key=get_cluster)
-    leaves_by_true_class = {c: list(ls) for c, ls in groupby(sorted_lvs,
-                                                             key=get_cluster)}
+    leaves_by_true_class = {
+        c: list(ls) for c, ls in groupby(sorted_lvs, key=get_cluster)
+    }
     leaf_pairs_by_true_class = {}
     for class_lbl, lvs in leaves_by_true_class.items():
         # leaf_pairs_by_true_class[class_lbl] = combinations(leaves_by_true_class[class_lbl], 2)
@@ -139,7 +149,7 @@ def dendrogram_purity(root):
         for pair in leaf_pairs_by_true_class[class_lbl]:
             lca = pair[0].lca(pair[1])
             sum_purity += lca.purity(get_cluster(pair[0]))
-            assert(get_cluster(pair[0]) == get_cluster(pair[1]))
+            assert get_cluster(pair[0]) == get_cluster(pair[1])
             count += 1.0
     if count == 0.0:
         return 1.0

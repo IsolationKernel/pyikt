@@ -1,11 +1,11 @@
 # Copyright 2021 Xin Han
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,10 +38,9 @@ def load_data(filename):
     if filename.endswith(".csv"):
         split_sep = ","
     elif filename.endswith(".tsv"):
-        split_sep = '\t'
-    with open(filename, 'r') as f:
+        split_sep = "\t"
+    with open(filename, "r") as f:
         for line in f:
             splits = line.strip().split(sep=split_sep)
-            pid, l, vec = splits[0], splits[1], np.array([float(x)
-                                                          for x in splits[2:]])
+            pid, l, vec = splits[0], splits[1], np.array([float(x) for x in splits[2:]])
             yield ((l, pid, vec))

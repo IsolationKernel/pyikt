@@ -1,10 +1,9 @@
-import pytest
 import numpy as np
-from sklearn.datasets import make_blobs
-from sklearn.utils.estimator_checks import check_estimator
-from pyikt.graph import IKGOD
-
+import pytest
 import scipy.sparse as sp
+from sklearn.datasets import make_blobs
+
+from pyikt.graph import IKGOD
 
 
 def test_ikgod_initialization():
